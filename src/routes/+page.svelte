@@ -1,3 +1,4 @@
+
 <script lang="ts">
     import {createGetter, createSetter} from "./createGS";
     let lang: String = "cpp";
@@ -18,27 +19,34 @@
         }
 </script>
 
-<select bind:value={lang} class="select">
+<div class="w-[50%] max-w-280 min-w-96 m-auto relative top-[50%] translate-y-[30%]">
+<select bind:value={lang} class="select m-2">
     <option disabled selected>Pick your language</option>
     <option value="cpp">C++</option>
     <option value="java">Java</option>
 </select>
 
-<input class="input" placeholder="Variable type" bind:value={type}/>
+<br/>
+<div class="w-max">
+<input class="input m-2 w-max" placeholder="Variable type" bind:value={type}/>
 
-<input class="input" placeholder="Variable name" bind:value={name}/>
+<input class="input m-2 w-max" placeholder="Variable name" bind:value={name}/>
+</div>
+<br/>
 
-<label>
+<label class="m-4">
     <input class="checkbox" type="checkbox" bind:checked={getter}>
     Getter
 </label>
 
-<label>
+<label class="m-4">
     <input class="checkbox" type="checkbox" bind:checked={setter}>
     Setter
 </label>
 <br/>
-<button class="btn" on:click={() => {
+<button class="btn m-4" on:click={() => {
     setClipboard(content)
 }}>Copy text</button>
-<pre>{content}</pre>
+<pre class="bg-base-200 rounded-2xl p-4 pl-8 m-2 border-none">{content}</pre>
+</div>
+
