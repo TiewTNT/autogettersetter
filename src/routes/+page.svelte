@@ -1,20 +1,32 @@
 <script lang="ts">
     import {createGetter, createSetter} from "./createGS";
-    let lang: String;
-    let type: String;
-    let name: String;
+    let lang: String = "cpp";
+    let type: String = "";
+    let name: String = "";
     let getter: boolean = true;
     let setter: boolean = true;
+    let content: string;
+    $: content = `${getter ? createGetter(type, name, lang) : ""}${setter ? createSetter(type, name, lang) : ""}`
+
+    async function setClipboard(text: string) {
+        const type = "text/plain";
+        const clipboardItemData = {
+            [type]: text,
+        };
+        const clipboardItem = new ClipboardItem(clipboardItemData);
+        await navigator.clipboard.write([clipboardItem]);
+        }
 </script>
 
-<select bind:value={lang}>
+<select bind:value={lang} class="select">
+    <option disabled selected>Pick your language</option>
     <option value="cpp">C++</option>
     <option value="java">Java</option>
 </select>
 
-<input placeholder="Variable type" bind:value={type}/>
+<input class="input" placeholder="Variable type" bind:value={type}/>
 
-<input placeholder="Variable name" bind:value={name}/>
+<input class="input" placeholder="Variable name" bind:value={name}/>
 
 <label>
     <input type="checkbox" bind:checked={getter}>
@@ -25,5 +37,8 @@
     <input type="checkbox" bind:checked={setter}>
     Setter
 </label>
-
-<pre>{#if getter}{createGetter(type, name, lang)}{/if}{#if setter}{createSetter(type, name, lang)}{/if}</pre>
+<br/>
+<button class="button" on:click={() => {
+    setClipboard(content)
+}}>Copy text</button>
+<pre>{content}</pre>
