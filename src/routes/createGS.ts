@@ -27,7 +27,7 @@ ${this.type} get${cap(this.name)}() {
 
     setter() {
         return `
-void set${cap(this.name)}(new${cap(this.name)}) {
+void set${cap(this.name)}(${this.type} new${cap(this.name)}) {
     ${this.name} = new${cap(this.name)};
 }  
         `
@@ -49,7 +49,7 @@ public ${this.type} get${cap(this.name)}() {
 
     setter() {
         return `
-public void set${cap(this.name)}(new${cap(this.name)}) {
+public void set${cap(this.name)}(${this.type} new${cap(this.name)}) {
     this.${this.name} = new${cap(this.name)};
 }  
         `
