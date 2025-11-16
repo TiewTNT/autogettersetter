@@ -20,7 +20,15 @@ class Cpp extends LangVar {
     getter() {
         return `
 ${this.type} get${cap(this.name)}() {
-        return ${this.name};
+    return ${this.name};
+}  
+        `
+    }
+
+    setter() {
+        return `
+void set${cap(this.name)}(new${cap(this.name)}) {
+    ${this.name} = new${cap(this.name)};
 }  
         `
     }
