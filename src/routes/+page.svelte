@@ -29,16 +29,16 @@
 <input class="input" placeholder="Variable name" bind:value={name}/>
 
 <label>
-    <input type="checkbox" bind:checked={getter}>
+    <input class="checkbox" type="checkbox" bind:checked={getter}>
     Getter
 </label>
 
 <label>
-    <input type="checkbox" bind:checked={setter}>
+    <input class="checkbox" type="checkbox" bind:checked={setter}>
     Setter
 </label>
 <br/>
-<button class="button" on:click={() => {
+<button class="btn" on:click={() => {
     setClipboard(content)
 }}>Copy text</button>
 <pre>{content}</pre>
