@@ -21,7 +21,7 @@ class Cpp extends LangVar {
         return `
 ${this.type} get${cap(this.name)}() {
     return ${this.name};
-}  
+}
         `
     }
 
@@ -34,14 +34,38 @@ void set${cap(this.name)}(new${cap(this.name)}) {
     }
 }
 
+class Java extends LangVar {
+    constructor(type: String, name: String) {
+        super(type, name)
+    }
+
+    getter() {
+        return `
+public ${this.type} get${cap(this.name)}() {
+    return ${this.name};
+}
+        `
+    }
+
+    setter() {
+        return `
+public void set${cap(this.name)}(new${cap(this.name)}) {
+    this.${this.name} = new${cap(this.name)};
+}  
+        `
+    }
+}
+
 export function createGetter(type: String, name: String, lang: String) {
     switch (lang) {
         case ("cpp"): return (new Cpp(type, name)).getter();
+        case ("java"): return (new Java(type, name)).getter();
     }
 }
 
 export function createSetter(type: String, name: String, lang: String) {
     switch (lang) {
         case ("cpp"): return (new Cpp(type, name)).setter();
+        case ("java"): return (new Java(type, name)).setter();
     }
 }
