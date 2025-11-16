@@ -33,3 +33,15 @@ void set${cap(this.name)}(new${cap(this.name)}) {
         `
     }
 }
+
+export function createGetter(type: String, name: String, lang: String) {
+    switch (lang) {
+        case ("cpp"): return (new Cpp(type, name)).getter();
+    }
+}
+
+export function createSetter(type: String, name: String, lang: String) {
+    switch (lang) {
+        case ("cpp"): return (new Cpp(type, name)).setter();
+    }
+}
